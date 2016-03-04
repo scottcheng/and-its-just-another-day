@@ -1,34 +1,29 @@
+import { IMG_W, CANVAS_W, OFFSET, N_LINES, LINE_ITV, IMG_ITV, MAX_L, MIN_L, MAX_TAN } from './constants';
+import { randIn, fractionIn, fracSqToCenter } from './util';
 import images from './images';
-
-const IMG_W = 2200;
-const CANVAS_W = 800;
-const OFFSET = 50;
-const N_LINES = 1000;
-
-const LINE_ITV = 25;
-const IMG_ITV = 2 * 1000;
+import Color, { getColor, imageLoaded } from './color';
 
 const lines = [];
-// each line is { x, y } on canvas
-
-let img = null;
+// { x, y, color, areaType }
+// x, y: coordinates on canvas
+// areaType: 'cloud', 'ocean', 'other'
 
 window.setup = () => {
   createCanvas(CANVAS_W + OFFSET * 2, CANVAS_W + OFFSET * 2);
-  background(0);
+  colorMode(HSB);
+  background(0, 0, 0);
 
   for (let i = 0; i < N_LINES; i++) {
     lines.push(genPointInGlobe());
   }
 
-  loadImg(0);
+  loadImg();
   drawLineTimeout(lines);
 };
 
-const loadImg = (i) => {
-  loadImage(images.list[i], (newImg) => {
-    newImg.loadPixels();
-    img = newImg;
+const loadImg = (i = 0) => {
+  loadImage(images.list[i], (img) => {
+    Color.loadImage(img);
 
     window.setTimeout(loadImg.bind(null, (i + 1) % images.list.length), IMG_ITV);
   }, () => {
@@ -37,8 +32,8 @@ const loadImg = (i) => {
 };
 
 const drawLineTimeout = (lines) => {
-  if (img) { drawLine(lines); }
-  window.setTimeout(drawLineTimeout.bind(null, lines), LINE_ITV);
+  if (Color.imageLoaded()) { drawLine(lines); }
+  window.setTimeout(window.requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), LINE_ITV);
 };
 
 const drawLine = (lines) => {
@@ -53,7 +48,7 @@ const drawLine = (lines) => {
 
     const { x, y } = lines[i];
     const { x: x1, y: y1 } = getNextPoint({ x, y });
-    stroke(getColor(img, x, y));
+    stroke(getColor(x, y, line));
     strokeWeight(getStrokeWeight());
     line(x + OFFSET, y + OFFSET, x1 + OFFSET, y1 + OFFSET);
 
@@ -70,14 +65,9 @@ const getStrokeWeight = () => {
 };
 
 const getNextPoint = ({ x, y }) => {
-  const MAX_D = 9;
-  const MIN_D = 2;
-  const MAX_TAN = -1.4;
-  // TODO: maybe consider angle and draw (roughly) backwards
-
   while (true) {
-    const dx = (Math.random() * Math.random() * (MAX_D - MIN_D) + MIN_D) * (Math.random() < .5 ? 1 : -1);
-    const dy = ((Math.random() * (MAX_TAN - 1 / MAX_TAN)) + 1 / MAX_TAN) * dx;
+    const dx = fractionIn(Math.random() * Math.random(), MIN_L, MAX_L) * (Math.random() < .5 ? 1 : -1);
+    const dy = randIn(1 / MAX_TAN, MAX_TAN) * dx;
     const x1 = x + dx;
     const y1 = y + dy;
     if (inGlobe({ x: x1, y: y1 })) {
@@ -97,24 +87,5 @@ const genPointInGlobe = () => {
 };
 
 const inGlobe = ({ x, y }) => {
-  const c = CANVAS_W / 2;
-  return (x - c) * (x - c) + (y - c) * (y - c) < c * c * 1.2;
-};
-
-// cx: x on canvas
-// cy: y on canvas
-// Assuming img.loadPixels has been called
-const getColor = (img, cx, cy) => {
-  const THRESHOLD = 0;
-  const renderW = CANVAS_W - THRESHOLD * 2;
-  if (cx < THRESHOLD || cx >= CANVAS_W - THRESHOLD || cy < THRESHOLD || cy >= CANVAS_W - THRESHOLD) {
-    return color(0);
-  }
-
-  const idx = (Math.floor((cy - THRESHOLD) / renderW * IMG_W) * IMG_W + Math.floor((cx - THRESHOLD) / renderW * IMG_W)) * 4;
-  const r = img.pixels[idx];
-  const g = img.pixels[idx + 1];
-  const b = img.pixels[idx + 2];
-
-  return color(r, g, b, r + g + b > 10 ? 128 : 255);
+  return fracSqToCenter(x, y) < 1.2;
 };

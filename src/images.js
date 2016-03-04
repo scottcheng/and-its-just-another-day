@@ -1,8 +1,4 @@
-const dir = 'images/color/4';
-const ext = '.jpg';
-
-const start = new Date('Oct 31 2015 14:50');
-const end = new Date('Nov 1 2015 14:30');
+import { IMG_DIR, IMG_EXT, START, END } from './constants';
 
 const itv = 10;
 
@@ -15,12 +11,12 @@ const getTimestamp = (t) => {
 };
 
 const add = (t) => {
-  if (t >= end) { return; }
+  if (t >= END) { return; }
 
-  list.push(`${dir}/${getTimestamp(t)}${ext}`);
+  list.push(`${IMG_DIR}/${getTimestamp(t)}${IMG_EXT}`);
   add(new Date(t.getTime() + itv * 60 * 1000));
 };
-add(start);
+add(START);
 
 export default {
   list,

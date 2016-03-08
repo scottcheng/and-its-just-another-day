@@ -2,7 +2,7 @@ export const IMG_W = 550;
 export const CANVAS_W = 800;
 export const OFFSET = 50;
 
-export const N_LINES = 21;
+export const N_LINES = 19;
 
 // Interval (in ms) of drawing lines and updating image
 export const LINE_ITV = 0;

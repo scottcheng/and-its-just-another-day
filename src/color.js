@@ -81,7 +81,7 @@ const isOcean = (h, s, l) => {
 };
 
 const getCloudColor = (h, s, l, x, y) => {
-  h = randIn(342, 360 + 45);
+  h = randIn(337, 360 + 42);
   s = randIn(65, 90);
   l = l * randIn(1.5, 1.9);
 
@@ -89,7 +89,7 @@ const getCloudColor = (h, s, l, x, y) => {
 };
 
 const getOceanColor = (h, s, l, x, y) => {
-  h += randIn(-20, -10);
+  h += randIn(-30, -20);
   s += randIn(-5, 10);
   l += randIn(-5, 5);
 

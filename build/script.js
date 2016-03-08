@@ -194,7 +194,7 @@
 	var CANVAS_W = exports.CANVAS_W = 800;
 	var OFFSET = exports.OFFSET = 50;
 
-	var N_LINES = exports.N_LINES = 21;
+	var N_LINES = exports.N_LINES = 19;
 
 	// Interval (in ms) of drawing lines and updating image
 	var LINE_ITV = exports.LINE_ITV = 0;
@@ -421,7 +421,7 @@
 	};
 
 	var getCloudColor = function getCloudColor(h, s, l, x, y) {
-	  h = (0, _util.randIn)(342, 360 + 45);
+	  h = (0, _util.randIn)(337, 360 + 42);
 	  s = (0, _util.randIn)(65, 90);
 	  l = l * (0, _util.randIn)(1.5, 1.9);
 
@@ -429,7 +429,7 @@
 	};
 
 	var getOceanColor = function getOceanColor(h, s, l, x, y) {
-	  h += (0, _util.randIn)(-20, -10);
+	  h += (0, _util.randIn)(-30, -20);
 	  s += (0, _util.randIn)(-5, 10);
 	  l += (0, _util.randIn)(-5, 5);
 

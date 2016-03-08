@@ -38,16 +38,20 @@ export const getColor = (cx, cy, line) => {
 const filter = (c, x, y) => {
   let [h, s, l] = [hue(c), saturation(c), brightness(c)];
 
+  if (l < 10) {
+    return [0, 0, 0];
+  }
+
   if (isCloud(h, s, l)) {
-    return getCloudColor(h, s, l, x, y);
+    [h, s, l] = getCloudColor(h, s, l, x, y);
   }
-  if (isOcean(h, s, l)) {
-    return getOceanColor(h, s, l, x, y);
+  else if (isOcean(h, s, l)) {
+    [h, s, l] = getOceanColor(h, s, l, x, y);
   }
-  if (l > 10) {
-    return getOtherColor(h, s, l, x, y);
+  else if (l > 10) {
+    [h, s, l] = getOtherColor(h, s, l, x, y);
   }
-  return [0, 0, 0];
+  return [h, s, l];
 
   [h, s, l] = brighten(h, s, l, 1.5);
   [h, s, l] = saturate(h, s, l);
@@ -68,7 +72,7 @@ const grayscale = (h, s, l) => {
 };
 
 const isCloud = (h, s, l) => {
-  return s < 10;
+  return s < 18;
 };
 
 const isOcean = (h, s, l) => {
@@ -77,34 +81,24 @@ const isOcean = (h, s, l) => {
 };
 
 const getCloudColor = (h, s, l, x, y) => {
-  h = randIn(332, 360 + 45);
-  s = randIn(50, 75);
-  l = 95;
+  h = randIn(342, 360 + 45);
+  s = randIn(65, 90);
+  l = l * randIn(1.5, 1.9);
 
   return correctHSL(h, s, l);
 };
 
 const getOceanColor = (h, s, l, x, y) => {
-  // h = randIn(177, 219);
   h += randIn(-20, -10);
-  // s = randIn(65, 90);
-  s += randIn(0, 25);
-  // l = randIn(16, 50);
-  l += randIn(-5, 25);
+  s += randIn(-5, 10);
+  l += randIn(-5, 5);
 
-  // const d = fracSqToCenter(x, y);
-  // const brightenThresh = .7;
-  // if (d > brightenThresh) {
-  //   l = Math.min(100, l * randIn(1, ((d - brightenThresh) / (1 - brightenThresh) + 1)));
-  // }
   return correctHSL(h, s, l);
 };
 
 const getOtherColor = (h, s, l, x, y) => {
-  h += randIn(20, 50);
-  // s = randIn(65, 90);
+  h += randIn(30, 50);
   s += randIn(-5, 15);
-  // l = randIn(16, 50);
   l += randIn(-5, 15);
 
   return correctHSL(h, s, l);

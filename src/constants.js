@@ -1,20 +1,22 @@
-export const IMG_W = 2200;
+export const IMG_W = 550;
 export const CANVAS_W = 800;
 export const OFFSET = 50;
 
-export const N_LINES = 1000;
+export const N_LINES = 15;
 
 // Interval (in ms) of drawing lines and updating image
 export const LINE_ITV = 0;
-export const IMG_ITV = 2 * 1000;
+export const IMG_ITV = 5 * 1000;
 
 // Line length and angle
-export const MAX_L = 9;
-export const MIN_L = 2;
-export const MAX_TAN = -1.4;
+export const MAX_L = 12;
+export const MIN_L = 5;
+export const MIN_ANG = 30;
+export const MAX_ANG = 60;
+export const MAX_TAN = -.5;
 
-export const IMG_DIR = 'images/color/4';
+export const IMG_DIR = 'images/color/5';
 export const IMG_EXT = '.jpg';
-// export const START = new Date('Oct 31 2015 14:50');
-export const START = new Date('Nov 1 2015 02:50');
-export const END = new Date('Nov 1 2015 14:30');
+export const START = new Date('Dec 30 2015 20:50');
+// export const START = new Date('Nov 1 2015 02:50');
+export const END = new Date('Dec 31 2015 14:30');

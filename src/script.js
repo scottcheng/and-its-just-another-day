@@ -22,7 +22,7 @@ window.setup = () => {
   drawLineTimeout(lines);
 };
 
-const loadImg = (i = 0) => {
+const loadImg = (i = 35) => {
   loadImage(images.list[i], (img) => {
     Color.loadImage(img);
 
@@ -61,7 +61,7 @@ const drawLine = (lines) => {
 const getStrokeWeight = () => {
   if (Math.random() < .01) { return 5; }
   if (Math.random() < .1) { return 3; }
-  if (Math.random() < .5) { return 2; }
+  if (Math.random() < .6) { return 2; }
   return 1;
 };
 

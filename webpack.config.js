@@ -8,7 +8,11 @@ var paths = {
 };
 
 module.exports = {
-  entry: paths.src + '/index.js',
+  entry: [
+    'babel-polyfill',
+    paths.src + '/index.js'
+  ],
+
   output: {
     path: paths.dist,
     filename: 'script.js',

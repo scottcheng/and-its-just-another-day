@@ -8113,12 +8113,17 @@
 
 	var about = _interopRequireWildcard(_about);
 
+	var _fullscreen = __webpack_require__(312);
+
+	var fullscreen = _interopRequireWildcard(_fullscreen);
+
 	__webpack_require__(307);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	window.onload = function () {
 	  about.setup();
+	  fullscreen.setup();
 	};
 
 /***/ },
@@ -8196,7 +8201,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: #000;\n  color: #bbb;\n  font-family: 'Cutive Mono', monospace;\n  font-weight: 300;\n  line-height: 1.5;\n  font-size: 16px;\n}\n::-moz-selection {\n  background: rgba(76,134,154,0.3);\n}\n::selection {\n  background: rgba(76,134,154,0.3);\n}\na,\n.link {\n  color: #888;\n  text-decoration: none;\n  cursor: pointer;\n}\na:hover,\n.link:hover,\na:active,\n.link:active,\na:focus,\n.link:focus {\n  color: #666;\n  outline: none;\n}\np {\n  margin: 1.5em 0 0;\n}\ncanvas {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n  -moz-transform: translate(-50%, -50%);\n  -o-transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  transform: translate(-50%, -50%);\n}\n#about-content,\n#about-content-hidden {\n  display: none;\n}\n#about.is-open #about-link {\n  display: none;\n}\n#about.is-open #about-content {\n  display: block;\n}\n#about-link,\n#about-content {\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 20px;\n}\n#about-close {\n  position: absolute;\n  top: 0;\n  right: 0;\n  padding: 20px;\n}\n#about-content {\n  background: rgba(0,0,0,0.6);\n  width: 504px;\n  height: 312px;\n}\n#about-content h1 {\n  margin-top: 0;\n  font-size: 1em;\n  font-weight: 700;\n}\n.about-close {\n  display: inline-block;\n}\n", ""]);
+	exports.push([module.id, "html {\n  background: #000;\n}\nbody {\n  color: #bbb;\n  font-family: 'Cutive Mono', monospace;\n  font-weight: 300;\n  line-height: 1.5;\n  font-size: 16px;\n}\n::-moz-selection {\n  background: rgba(76,134,154,0.3);\n}\n::selection {\n  background: rgba(76,134,154,0.3);\n}\na,\n.link {\n  color: #888;\n  text-decoration: none;\n  cursor: pointer;\n}\na:hover,\n.link:hover,\na:active,\n.link:active,\na:focus,\n.link:focus {\n  color: #666;\n  outline: none;\n}\np {\n  margin: 1.5em 0 0;\n}\ncanvas {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n  -moz-transform: translate(-50%, -50%);\n  -o-transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  transform: translate(-50%, -50%);\n}\n#about-content,\n#about-content-hidden {\n  display: none;\n}\n#about.is-open #about-link {\n  display: none;\n}\n#about.is-open #about-content {\n  display: block;\n}\n#about-link,\n#about-content {\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding: 20px;\n}\n#about-content {\n  background: rgba(0,0,0,0.6);\n  width: 504px;\n  height: 288px;\n}\n#about-content h1 {\n  margin-top: 0;\n  font-size: 1em;\n  font-weight: 700;\n}\n.about-close {\n  display: inline-block;\n}\n#fullscreen-link,\n#fullscreen-close {\n  position: fixed;\n  top: 0;\n  right: 0;\n  padding: 20px;\n}\n#fullscreen-close {\n  display: none;\n}\n#fullscreen.is-active #fullscreen-link {\n  display: none;\n}\n#fullscreen.is-active #fullscreen-close {\n  display: block;\n}\n", ""]);
 
 	// exports
 
@@ -8567,18 +8572,10 @@
 	      type: 'a',
 	      href: 'http://scottcheng.com',
 	      children: ['scott cheng']
-	    }, { type: 'br' }, 'thanks to ', {
+	    }, '', ' with images from ', {
 	      type: 'a',
 	      href: 'http://himawari8.nict.go.jp/',
 	      children: ['himawari']
-	    }, ', ', {
-	      type: 'a',
-	      href: 'https://github.com/jakiestfu/himawari.js/',
-	      children: ['himawari.js']
-	    }, ', and ', {
-	      type: 'a',
-	      href: 'https://p5js.org/',
-	      children: ['p5.js']
 	    }]
 	  }, {
 	    type: 'p',
@@ -8869,9 +8866,9 @@
 	  loadImage(_images2.default.list[i], function (img) {
 	    _color2.default.loadImage(img);
 
-	    window.setTimeout(loadImg.bind(null, (i + 1) % _images2.default.list.length), _constants.IMG_ITV);
+	    setTimeout(loadImg.bind(null, (i + 1) % _images2.default.list.length), _constants.IMG_ITV);
 	  }, function () {
-	    window.setTimeout(loadImg.bind(null, (i + 1) % _images2.default.list.length), _constants.IMG_ITV);
+	    setTimeout(loadImg.bind(null, (i + 1) % _images2.default.list.length), _constants.IMG_ITV);
 	  });
 	};
 
@@ -8879,7 +8876,7 @@
 	  if (_color2.default.imageLoaded()) {
 	    drawLine(lines);
 	  }
-	  window.setTimeout(window.requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), _constants.LINE_ITV);
+	  setTimeout(requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), _constants.LINE_ITV);
 	};
 
 	var drawLine = function drawLine(lines) {
@@ -9237,6 +9234,96 @@
 	  loadImage: loadImage,
 	  imageLoaded: imageLoaded,
 	  getColor: getColor
+	};
+
+/***/ },
+/* 312 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fullscreenEnabled = function fullscreenEnabled() {
+	  return document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled;
+	};
+
+	var fullscreenElement = function fullscreenElement() {
+	  return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+	};
+
+	var request = function request() {
+	  var d = document.documentElement;
+	  var requestFn = d.requestFullscreen || d.webkitRequestFullscreen || d.mozRequestFullScreen || d.msRequestFullscreen;
+
+	  if (requestFn) {
+	    requestFn.call(d);
+	  }
+
+	  updateClass();
+	};
+
+	var exit = function exit() {
+	  var exitFn = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+
+	  if (exitFn) {
+	    exitFn.call(document);
+	  }
+
+	  updateClass();
+	};
+
+	var toggle = function toggle() {
+	  if (fullscreenElement()) {
+	    exit();
+	  } else {
+	    request();
+	  }
+	};
+
+	var updateClass = function updateClass() {
+	  if (fullscreenElement()) {
+	    document.querySelector('#fullscreen').classList.add('is-active');
+	  } else {
+	    document.querySelector('#fullscreen').classList.remove('is-active');
+	  }
+	};
+
+	// Periodically check class
+	// This is needed because esc key event does not fire when exiting from
+	// fullscreen mode in some browsers
+	var checkClass = function checkClass() {
+	  updateClass();
+	  setTimeout(requestAnimationFrame.bind(null, checkClass.bind(null)), 1000);
+	};
+
+	var setup = exports.setup = function setup() {
+	  var containerNode = document.querySelector('#fullscreen');
+
+	  if (!fullscreenEnabled()) {
+	    containerNode.parentNode.removeChild(containerNode);
+	    return;
+	  }
+
+	  document.querySelector('#fullscreen-link').addEventListener('click', function () {
+	    request();
+	  });
+	  document.querySelector('#fullscreen-close').addEventListener('click', function () {
+	    exit();
+	  });
+
+	  document.addEventListener('keyup', function (e) {
+	    if (e.keyCode === 13) {
+	      // enter
+	      toggle();
+	    } else if (e.keyCode === 27) {
+	      // esc
+	      exit();
+	    }
+	  });
+
+	  checkClass();
 	};
 
 /***/ }

@@ -10,7 +10,8 @@ const lines = [];
 // areaType: 'cloud', 'ocean', 'other'
 
 window.setup = () => {
-  createCanvas(CANVAS_W + OFFSET * 2, CANVAS_W + OFFSET * 2);
+  const canvas = createCanvas(CANVAS_W + OFFSET * 2, CANVAS_W + OFFSET * 2);
+  canvas.parent('o');
   colorMode(HSB);
   background(0, 0, 0);
 

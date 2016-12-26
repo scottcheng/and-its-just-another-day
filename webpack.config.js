@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var nib = require('nib');
 
 var paths = {
   src: path.join(__dirname, 'src'),
@@ -7,7 +8,7 @@ var paths = {
 };
 
 module.exports = {
-  entry: paths.src + '/script.js',
+  entry: paths.src + '/index.js',
   output: {
     path: paths.dist,
     filename: 'script.js',
@@ -24,6 +25,18 @@ module.exports = {
         test: /\.json$/,
         loader: 'json',
       },
+      {
+        test: /\.styl$/,
+        loader: 'style!css!stylus',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
     ],
+  },
+
+  stylus: {
+    use: [nib()],
   },
 };

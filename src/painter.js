@@ -27,15 +27,15 @@ const loadImg = (i = 35) => {
   loadImage(images.list[i], (img) => {
     Color.loadImage(img);
 
-    window.setTimeout(loadImg.bind(null, (i + 1) % images.list.length), IMG_ITV);
+    setTimeout(loadImg.bind(null, (i + 1) % images.list.length), IMG_ITV);
   }, () => {
-    window.setTimeout(loadImg.bind(null, (i + 1) % images.list.length), IMG_ITV);
+    setTimeout(loadImg.bind(null, (i + 1) % images.list.length), IMG_ITV);
   });
 };
 
 const drawLineTimeout = (lines) => {
   if (Color.imageLoaded()) { drawLine(lines); }
-  window.setTimeout(window.requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), LINE_ITV);
+  setTimeout(window.requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), LINE_ITV);
 };
 
 const drawLine = (lines) => {

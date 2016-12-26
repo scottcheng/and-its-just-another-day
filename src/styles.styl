@@ -1,7 +1,9 @@
 @import 'nib'
 
-body
+html
   background #000
+
+body
   color #bbb
   font-family 'Cutive Mono', monospace
   font-weight 300
@@ -40,14 +42,12 @@ canvas
   #about-content
     display block
 
+$spacing = 20px
+
 #about-link,
 #about-content
   fixed top left
-  padding 20px
-
-#about-close
-  absolute top right
-  padding 20px
+  padding $spacing
 
 #about-content
   background rgba(#000, .6)
@@ -60,3 +60,17 @@ canvas
 
 .about-close
   display inline-block
+
+#fullscreen-link,
+#fullscreen-close
+  fixed top right
+  padding $spacing
+  // TODO hide on mobile
+
+#fullscreen-close
+  display none
+#fullscreen.is-active
+  #fullscreen-link
+    display none
+  #fullscreen-close
+    display block

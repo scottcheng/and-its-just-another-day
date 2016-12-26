@@ -56,24 +56,12 @@ children: [
         href: 'http://scottcheng.com',
         children: ['scott cheng'],
       },
-      { type: 'br' },
-      'thanks to ',
+      '',
+      ' with images from ',
       {
         type: 'a',
         href: 'http://himawari8.nict.go.jp/',
         children: ['himawari'],
-      },
-      ', ',
-      {
-        type: 'a',
-        href: 'https://github.com/jakiestfu/himawari.js/',
-        children: ['himawari.js'],
-      },
-      ', and ',
-      {
-        type: 'a',
-        href: 'https://p5js.org/',
-        children: ['p5.js']
       },
     ],
   },

@@ -1,8 +1,8 @@
 import himawari from 'himawari';
 
 // Get images in [start, end)
-const start = new Date('Feb 3 2016 14:40');
-const end = new Date('Feb 4 2016 14:40');
+const start = new Date('April 30 2016 14:40');
+const end = new Date('May 1 2016 14:40');
 
 const itv = 10; // in minutes
 

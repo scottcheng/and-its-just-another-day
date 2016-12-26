@@ -59,10 +59,10 @@ const drawLine = (lines) => {
 };
 
 const getStrokeWeight = () => {
-  if (Math.random() < .01) { return 5; }
-  if (Math.random() < .1) { return 3; }
-  if (Math.random() < .6) { return 2; }
-  return 1;
+  if (Math.random() < .01) { return 7; }
+  if (Math.random() < .1) { return 5; }
+  if (Math.random() < .5) { return 3; }
+  return 2;
 };
 
 const getNextPoint = ({ x, y }) => {

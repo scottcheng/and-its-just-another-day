@@ -81,23 +81,23 @@ const isOcean = (h, s, l) => {
 };
 
 const getCloudColor = (h, s, l, x, y) => {
-  h = randIn(337, 360 + 42);
-  s = randIn(65, 90);
-  l = l * randIn(1.5, 1.9);
+  h = randIn(347, 360 + 42);
+  s = randIn(65, 85);
+  l = l * randIn(1.2, 1.8);
 
   return correctHSL(h, s, l);
 };
 
 const getOceanColor = (h, s, l, x, y) => {
-  h += randIn(-30, -20);
+  h += randIn(-15, -5);
   s += randIn(-5, 10);
-  l += randIn(-5, 5);
+  l += randIn(-15, -5);
 
   return correctHSL(h, s, l);
 };
 
 const getOtherColor = (h, s, l, x, y) => {
-  h += randIn(30, 50);
+  h += randIn(10, 30);
   s += randIn(-5, 15);
   l += randIn(-5, 15);
 

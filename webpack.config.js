@@ -43,4 +43,8 @@ module.exports = {
   stylus: {
     use: [nib()],
   },
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
 };

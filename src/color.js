@@ -50,11 +50,6 @@ const filter = (c, x, y) => {
     [h, s, l] = getOtherColor(h, s, l, x, y);
   }
   return [h, s, l];
-
-  [h, s, l] = brighten(h, s, l, 1.5);
-  [h, s, l] = saturate(h, s, l);
-
-  return [h, s, l];
 };
 
 const brighten = (h, s, l, amount = 1.2) => {

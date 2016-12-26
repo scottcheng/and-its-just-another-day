@@ -35,7 +35,7 @@ const loadImg = (i = 35) => {
 
 const drawLineTimeout = (lines) => {
   if (Color.imageLoaded()) { drawLine(lines); }
-  setTimeout(window.requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), LINE_ITV);
+  setTimeout(requestAnimationFrame.bind(null, drawLineTimeout.bind(null, lines)), LINE_ITV);
 };
 
 const drawLine = (lines) => {

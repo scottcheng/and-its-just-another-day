@@ -1,4 +1,4 @@
-import { IMG_W, CANVAS_W } from './constants';
+import { IMG_W } from './constants';
 import { randIn, fracSqToCenter } from './util';
 
 let img = null;
@@ -14,14 +14,12 @@ export const imageLoaded = () => img !== null;
 // cx: x on canvas
 // cy: y on canvas
 // Assuming img.loadPixels has been called
-export const getColor = (cx, cy, line) => {
-  const THRESHOLD = 0;
-  const renderW = CANVAS_W - THRESHOLD * 2;
-  if (cx < THRESHOLD || cx >= CANVAS_W - THRESHOLD || cy < THRESHOLD || cy >= CANVAS_W - THRESHOLD) {
+export const getColor = (cx, cy, line, canvasW) => {
+  if (cx < 0 || cx >= canvasW || cy < 0 || cy >= canvasW) {
     return color(0, 0, 0);
   }
 
-  const idx = (Math.floor((cy - THRESHOLD) / renderW * IMG_W) * IMG_W + Math.floor((cx - THRESHOLD) / renderW * IMG_W)) * 4;
+  const idx = (Math.floor(cy / canvasW * IMG_W) * IMG_W + Math.floor(cx / canvasW * IMG_W)) * 4;
   let r = img.pixels[idx];
   let g = img.pixels[idx + 1];
   let b = img.pixels[idx + 2];
